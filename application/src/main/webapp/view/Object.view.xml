@@ -2,6 +2,7 @@
 	controllerName="mckesson.eu.ProductDetails.controller.Object"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
 	xmlns:semantic="sap.f.semantic"
 	xmlns:form="sap.ui.layout.form">
 
@@ -26,56 +27,9 @@
 					<ObjectAttribute text="{SupplierName}"/>
 				</attributes>
 			</ObjectHeader>
-			<Panel
-				class="sapUiResponsiveMargin"
-				width="auto"
-				headerText="Product">
-				<content>
-					<form:SimpleForm id="objectForm">
-						<form:content>
-							<Label text="Category"/>
-							<Text text="{Category}"/>
-							<Label text="Name"/>
-							<Text text="{Name}"/>
-							<Label text="Weigth"/>
-							<Text text="{= ${WeightMeasure} + ' ' + ${WeightUnit}}"/>
-						</form:content>
-					</form:SimpleForm>
-				</content>
-			</Panel>
-
-			<Panel
-				class="sapUiResponsiveMargin"
-				width="auto"
-				headerText="Supplier">
-				<content>
-					<List id="supplierList">
-						<items>
-							<StandardListItem icon="sap-icon://building" title="{ToSupplier/CompanyName}"/>
-							<StandardListItem icon="sap-icon://email" title="{ToSupplier/EmailAddress}"/>
-							<StandardListItem icon="sap-icon://world" title="{ToSupplier/WebAddress}"/>
-							<StandardListItem icon="sap-icon://phone" title="{ToSupplier/PhoneNumber}"/>
-							<StandardListItem icon="sap-icon://map" title="{ToSupplier/Address/City}"/>
-						</items>
-					</List>
-				</content>
-			</Panel>
-
-			<Panel
-				class="sapUiResponsiveMargin"
-				width="auto"
-				headerText="Map">
-				<Image src="{
-					parts: [
-						'ToSupplier/Address/Street',
-						'ToSupplier/Address/PostalCode',
-						'ToSupplier/Address/City',
-						'ToSupplier/Address/Country'
-					],
-					formatter: '.formatter.formatMapUrl'
-				}" />
-
-			</Panel>
+			
+			<mvc:XMLView viewName="mckesson.eu.ProductDetails.view.ProductDetails"/>
+			<core:Fragment fragmentName="mckesson.eu.ProductDetails.view.SupplierInfo" type="XML"/>
 		</semantic:headerContent>
 
 		<semantic:sendEmailAction>
