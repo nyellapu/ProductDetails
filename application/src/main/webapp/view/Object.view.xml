@@ -15,14 +15,16 @@
 
 
 		<semantic:headerContent>
-			<ObjectHeader
+			<ObjectHeader				
 				id="objectHeader"
 				title="{ProductID}"
 				number="{
 					path: 'Price',
 					formatter: '.formatter.numberUnit'
 				}"
-				numberUnit="{CurrencyCode}">
+				numberUnit="{CurrencyCode}"
+				titleActive="true" 
+				titlePress="onShowDetailPopover">
 				<attributes>
 					<ObjectAttribute text="{SupplierName}"/>
 				</attributes>
@@ -35,7 +37,6 @@
 		<semantic:sendEmailAction>
 			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>
 		</semantic:sendEmailAction>
-
 
 	</semantic:SemanticPage>
 

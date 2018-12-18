@@ -1,9 +1,11 @@
 <mvc:View controllerName="mckesson.eu.ProductDetails.controller.Worklist" 
 	xmlns="sap.m" 
 	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns:l="sap.ui.layout"
 	xmlns:semantic="sap.f.semantic">
 
-	<semantic:SemanticPage id="page" headerPinnable="false" toggleHeaderOnTitleClick="false">
+	<semantic:SemanticPage id="page" headerPinnable="false" toggleHeaderOnTitleClick="false"
+							>
 
 		<semantic:titleHeading>
 			<Title text="{i18n>worklistTitle}" />
@@ -58,6 +60,7 @@
 						<ToolbarSpacer />
 						<SearchField id="searchField" tooltip="{i18n>worklistSearchTooltip}" search="onSearch" width="auto">
 						</SearchField>
+						<Button id="addButton" icon="sap-icon://add" press="onAdd"/>
 					</Toolbar>
 				</headerToolbar>
 
@@ -79,7 +82,11 @@
 				<items>
 					<ColumnListItem type="Navigation" press="onPress">
 						<cells>
-							<ObjectIdentifier title="{ProductID}" text="{SupplierName}"/>
+							<ObjectIdentifier 
+									title="{ProductID}" 
+									text="{SupplierName}"
+									titleActive="true"
+									titlePress="onShowDetailPopover"/>
 							<Text text="{SupplierName}"/>
 							<Link id="addressLink" text="{ToSupplier/WebAddress}" href="{ToSupplier/WebAddress}" target="_blank" />
 							<ObjectNumber number="{
@@ -92,14 +99,15 @@
 			</Table>
 				</content>
 			</IconTabBar>
-			
+
+		
 		</semantic:content>
 
 		<semantic:sendEmailAction>
 			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>
 		</semantic:sendEmailAction>
 
-
+	
 	</semantic:SemanticPage>
 
 </mvc:View>

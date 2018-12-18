@@ -65,7 +65,11 @@ sap.ui.define([
 			/* =========================================================== */
 			/* event handlers                                              */
 			/* =========================================================== */
+			
 
+			onAdd: function(oEvent){
+				this.getRouter().navTo("add");
+			},
 			/**
 			 * Triggered by the table's 'updateFinished' event: after new table
 			 * data is available, this handler method updates the table counter.
@@ -157,6 +161,21 @@ sap.ui.define([
 					oBinding = oTable.getBinding("items");
 
 					oBinding.filter(oFilter);
+			},
+
+			onShowDetailPopover :function(oEvent){
+				var oPopover = this._getPopover();
+				oPopover.bindElement(oEvent.getSource().getBindingContext().getPath());
+				var oOpner = oEvent.getParameter("domRef");
+				oPopover.openBy(oOpner);
+			},
+
+			_getPopover: function(){
+				if(!this._oPopover)	{
+					this._oPopover=sap.ui.xmlfragment("mckesson.eu.ProductDetails.view.DetailPopover");
+					this.getView().addDependent(this._oPopover);
+				} 
+				return this._oPopover;
 			},
 
 			/* =========================================================== */
